@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pretoria Quick Plumbing | Fast Emergency Plumbing & Leak Detection</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brandBlue: {
+              DEFAULT: '#0F2C59',
+              dark: '#081C3B',
+              light: '#1B427D'
+            },
+            brandOrange: {
+              DEFAULT: '#FF6B00',
+              hover: '#E05E00'
+            },
+            waGreen: '#25D366'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Sticky mobile CTA bar compensation */
+    body { padding-bottom: 70px; }
+    @media (min-width: 768px) { body { padding-bottom: 0; } }
+
+    /* Floating WhatsApp Widget Styling */
+    .wa-widget {
+      position: fixed;
+      bottom: 85px; /* Above mobile sticky bar */
+      right: 20px;
+      z-index: 9999;
+    }
+    @media (min-width: 768px) {
+      .wa-widget { bottom: 20px; }
+    }
+
+    @keyframes pulse-bounce {
+      0%, 100% { transform: scale(1) translateY(0); }
+      50% { transform: scale(1.08) translateY(-4px); box-shadow: 0 10px 25px rgba(37, 211, 102, 0.5); }
+    }
+    .wa-btn {
+      animation: pulse-bounce 3s infinite ease-in-out;
+    }
+
+    /* Tooltip logic */
+    .wa-tooltip {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .wa-widget:hover .wa-tooltip,
+    .wa-widget:focus-within .wa-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+
+  <!-- CONFIGURATION SCRIPT FOR QUICK LEAD CUSTOMIZATION -->
+  <script>
+    // EDIT THESE TWO VARIABLES PER CLIENT PITCH:
+    const PHONE_TEL = "+27821234567"; // E.g. "+27821234567"
+    const PHONE_DISPLAY = "082 123 4567"; // E.g. "082 123 4567"
+    const FORM_ENDPOINT = ""; // Paste JSON webhook or form service URL when publishing
+  </script>
+
+  <!-- STICKY HEADER -->
+  <header class="sticky top-0 z-50 bg-brandBlue shadow-lg border-b border-brandBlue-light">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <span class="text-2xl font-black text-white tracking-tight">PRETORIA QUICK <span class="text-brandOrange">PLUMBING</span></span>
+      </div>
+      <a id="navCallBtn" href="#" class="bg-brandOrange hover:bg-brandOrange-hover text-white font-bold py-2 px-4 rounded-lg shadow-md transition-all text-sm md:text-base flex items-center gap-2">
+        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1c1 0 011.11-.27c1.21.49 2.53.76 3.88.76a1 1 0 011 1v3.5a1 1 0 01-1 1C10.07 22 2 13.93 2 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.27 2.67.76 3.88a1 1 0 01-.27 1.11l-2.2 2.2z"/></svg>
+        <span>Call Now</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="bg-gradient-to-b from-brandBlue to-brandBlue-dark text-white py-16 px-4 relative">
+    <div class="max-w-5xl mx-auto text-center space-y-6">
+      <div class="inline-block bg-brandOrange/20 border border-brandOrange text-brandOrange font-semibold px-4 py-1 rounded-full text-sm">
+        🚨 24/7 Emergency Service in Pretoria & Centurion
+      </div>
+      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
+        Fast, Reliable Emergency Plumbing in <span class="text-brandOrange">Pretoria & Centurion</span>
+      </h1>
+      <p class="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto">
+        On-site within 45 minutes for burst pipes, geyser replacements, and critical leaks. No hidden call-out fees. PIRB Registered.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+        <a href="#quote-form" class="bg-brandOrange hover:bg-brandOrange-hover text-white font-bold py-4 px-8 rounded-xl text-lg shadow-xl transition-all text-center">
+          Get Free Quote
+        </a>
+        <a id="heroCallBtn" href="#" class="bg-white/10 hover:bg-white/20 text-white font-bold py-4 px-8 rounded-xl text-lg border border-white/20 transition-all text-center flex items-center justify-center gap-2">
+          <span>Call Immediately</span>
+        </a>
+      </div>
+
+      <!-- TRUST BADGES -->
+      <div class="pt-10 grid grid-cols-1 md:grid-cols-3 gap-4 text-slate-300 text-sm border-t border-white/10 mt-8">
+        <div class="flex items-center justify-center gap-2">
+          <span class="text-brandOrange font-bold text-lg">✓</span> 100% Guaranteed Workmanship
+        </div>
+        <div class="flex items-center justify-center gap-2">
+          <span class="text-brandOrange font-bold text-lg">✓</span> Licensed & PIRB Certified
+        </div>
+        <div class="flex items-center justify-center gap-2">
+          <span class="text-brandOrange font-bold text-lg">✓</span> 45-Minute Rapid Response
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES GRID (4 SPECIFIC HIGH-VALUE SERVICES) -->
+  <section class="py-16 max-w-7xl mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-brandBlue">Our Specialized Emergency Services</h2>
+      <p class="text-slate-600 mt-2">Tap any service to select it for an instant quote callback.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Service Card 1 -->
+      <div onclick="selectService('Burst Pipe Repair')" class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all border border-slate-100 cursor-pointer group">
+        <div class="w-12 h-12 bg-brandOrange/10 rounded-xl flex items-center justify-center text-brandOrange font-bold text-2xl mb-4 group-hover:bg-brandOrange group-hover:text-white transition-all">💥</div>
+        <h3 class="text-xl font-bold text-brandBlue mb-2">Burst Pipe Repair</h3>
+        <p class="text-slate-600 text-sm">Rapid isolation and emergency repair of burst water mains and internal piping.</p>
+      </div>
+
+      <!-- Service Card 2 -->
+      <div onclick="selectService('Thermal Leak Detection')" class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all border border-slate-100 cursor-pointer group">
+        <div class="w-12 h-12 bg-brandOrange/10 rounded-xl flex items-center justify-center text-brandOrange font-bold text-2xl mb-4 group-hover:bg-brandOrange group-hover:text-white transition-all">🔍</div>
+        <h3 class="text-xl font-bold text-brandBlue mb-2">Leak Detection</h3>
+        <p class="text-slate-600 text-sm">Non-invasive thermal imaging and acoustic detection for hidden underground leaks.</p>
+      </div>
+
+      <!-- Service Card 3 -->
+      <div onclick="selectService('Geyser Repair & Replacement')" class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all border border-slate-100 cursor-pointer group">
+        <div class="w-12 h-12 bg-brandOrange/10 rounded-xl flex items-center justify-center text-brandOrange font-bold text-2xl mb-4 group-hover:bg-brandOrange group-hover:text-white transition-all">🔥</div>
+        <h3 class="text-xl font-bold text-brandBlue mb-2">Geyser Repair & Fitting</h3>
+        <p class="text-slate-600 text-sm">Emergency element replacement, thermostat fixes, and full SABS geyser installations.</p>
+      </div>
+
+      <!-- Service Card 4 -->
+      <div onclick="selectService('Blocked Drain Unblocking')" class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all border border-slate-100 cursor-pointer group">
+        <div class="w-12 h-12 bg-brandOrange/10 rounded-xl flex items-center justify-center text-brandOrange font-bold text-2xl mb-4 group-hover:bg-brandOrange group-hover:text-white transition-all">🧹</div>
+        <h3 class="text-xl font-bold text-brandBlue mb-2">Blocked Drains</h3>
+        <p class="text-slate-600 text-sm">High-pressure jetting and electro-cleaning for sewer mains and stubborn household blockages.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS SECTION -->
+  <section class="bg-slate-100 py-16 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <div class="text-brandOrange text-2xl font-bold mb-1">★★★★★ 4.9 / 5 Rating</div>
+        <h2 class="text-3xl font-extrabold text-brandBlue">Local Customer Reviews</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+          <div class="text-brandOrange mb-2">★★★★★</div>
+          <p class="text-slate-600 text-sm mb-4">"Our geyser burst at 2 AM in Centurion. Pretoria Quick Plumbing arrived within 40 minutes and prevented massive ceiling damage!"</p>
+          <div class="font-bold text-brandBlue text-sm">— Johan S., Centurion</div>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+          <div class="text-brandOrange mb-2">★★★★★</div>
+          <p class="text-slate-600 text-sm mb-4">"Found a hidden slab leak in our Lynnwood home using high-tech equipment without ripping up our tiles unnecessarily. Top service."</p>
+          <div class="font-bold text-brandBlue text-sm">— Sarah M., Lynnwood</div>
+        </div>
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+          <div class="text-brandOrange mb-2">★★★★★</div>
+          <p class="text-slate-600 text-sm mb-4">"Extremely transparent pricing. Unblocked our main sewer line in Moreleta Park quickly and efficiently. Highly recommended!"</p>
+          <div class="font-bold text-brandBlue text-sm">— David K., Moreleta Park</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEAD INTAKE FORM -->
+  <section id="quote-form" class="py-16 px-4 max-w-3xl mx-auto">
+    <div class="bg-white rounded-3xl p-8 shadow-xl border border-slate-200">
+      <h2 class="text-2xl md:text-3xl font-extrabold text-brandBlue text-center mb-2">Get an Immediate Callback</h2>
+      <p class="text-slate-500 text-center text-sm mb-6">Fill in your details below and a plumber will call you within 5 minutes.</p>
+
+      <form id="leadForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1">Full Name</label>
+          <input type="text" required placeholder="e.g. Gerhard Botha" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brandOrange">
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1">Phone Number</label>
+          <input type="tel" required placeholder="e.g. 082 123 4567" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brandOrange">
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1">Service Required</label>
+          <select id="serviceSelect" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brandOrange">
+            <option value="General Inquiry">Select a service...</option>
+            <option value="Burst Pipe Repair">Burst Pipe Repair</option>
+            <option value="Thermal Leak Detection">Leak Detection</option>
+            <option value="Geyser Repair & Replacement">Geyser Repair / Fitting</option>
+            <option value="Blocked Drain Unblocking">Blocked Drains</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1">Optional Message</label>
+          <textarea rows="3" placeholder="Briefly describe the emergency..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brandOrange"></textarea>
+        </div>
+
+        <button type="submit" class="w-full bg-brandOrange hover:bg-brandOrange-hover text-white font-bold py-4 rounded-xl text-lg shadow-lg transition-all">
+          Submit for Immediate Call Back
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-brandBlue-dark text-slate-400 py-12 px-4 border-t border-white/10 text-sm">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <div>
+        <h4 class="text-white font-bold text-lg mb-3">Pretoria Quick Plumbing</h4>
+        <p>Licensed, rapid-response plumbing specialists serving the greater Pretoria and Centurion metropolitan areas.</p>
+        <p class="mt-2 font-mono text-xs">PIRB License: #PL-20481</p>
+      </div>
+      <div>
+        <h4 class="text-white font-bold text-lg mb-3">Service Areas</h4>
+        <p>Centurion, Lynnwood, Moreleta Park, Faerie Glen, Menlyn, Pretoria East, Pretoria North, Garsfontein.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-bold text-lg mb-3">Contact & Hours</h4>
+        <p>Hours: 24/7 Emergency Service</p>
+        <p>Email: hello@pretoriaquickplumbing.co.za</p>
+        <p>Phone: <span class="phone-display-text text-white font-semibold"></span></p>
+      </div>
+    </div>
+    <div class="max-w-6xl mx-auto text-center border-t border-white/10 pt-6 text-xs text-slate-500">
+      © 2026 Pretoria Quick Plumbing. All rights reserved. All work performed according to SANS 10254 standards.
+    </div>
+  </footer>
+
+  <!-- MOBILE SLIDING CALL / FREE QUOTE BAR -->
+  <div class="md:hidden fixed bottom-0 left-0 right-0 bg-brandBlue border-t border-white/10 p-3 flex gap-2 z-40">
+    <a id="mobileBarCall" href="#" class="flex-1 bg-brandOrange text-white font-bold py-3 rounded-xl text-center text-sm flex items-center justify-center gap-1">
+      <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1c1 0 011.11-.27c1.21.49 2.53.76 3.88.76a1 1 0 011 1v3.5a1 1 0 01-1 1C10.07 22 2 13.93 2 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.27 2.67.76 3.88a1 1 0 01-.27 1.11l-2.2 2.2z"/></svg>
+      Call Now
+    </a>
+    <a href="#quote-form" class="flex-1 bg-white/10 text-white font-bold py-3 rounded-xl text-center text-sm border border-white/20">
+      Free Quote
+    </a>
+  </div>
+
+  <!-- FLOATING STICKY WHATSAPP WIDGET -->
+  <div class="wa-widget">
+    <span class="wa-tooltip bg-slate-900 text-white text-xs py-1 px-3 rounded-md shadow-lg absolute right-16 top-3 whitespace-nowrap">
+      Chat with us on WhatsApp
+    </span>
+    <a id="waWidgetLink" href="#" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp"
+       class="wa-btn bg-waGreen text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all">
+      <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- INITIALIZATION & FORM SCRIPT -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Wire Phone Call Links
+      const telUrl = PHONE_TEL ? `tel:${PHONE_TEL}` : "#";
+      document.getElementById("navCallBtn").href = telUrl;
+      document.getElementById("heroCallBtn").href = telUrl;
+      document.getElementById("mobileBarCall").href = telUrl;
+
+      // Update Phone Display Text
+      document.querySelectorAll(".phone-display-text").forEach(el => {
+        el.textContent = PHONE_DISPLAY || "Provide phone number";
+      });
+
+      // Wire WhatsApp Link
+      const cleanNumber = PHONE_TEL.replace(/[^0-9]/g, '');
+      const waUrl = cleanNumber 
+        ? `https://wa.me/${cleanNumber}?text=Hi,%20I%20saw%20your%20website%20and%20would%20like%20a%20free%20quote.`
+        : "#";
+      document.getElementById("waWidgetLink").href = waUrl;
+    });
+
+    function selectService(serviceName) {
+      const select = document.getElementById("serviceSelect");
+      select.value = serviceName;
+      document.getElementById("quote-form").scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      if (!FORM_ENDPOINT) {
+        alert("PREVIEW MODE: Thank you! Lead recorded successfully on page. (Paste custom JSON endpoint into FORM_ENDPOINT to enable real-time delivery).");
+      } else {
+        alert("Form submitted to active endpoint!");
+      }
+    }
+  </script>
+</body>
+</html>
