@@ -200,17 +200,17 @@
       <form id="leadForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
         <div>
           <label class="block text-sm font-semibold text-slate-700 mb-1">Full Name</label>
-          <input type="text" required placeholder="e.g. Gerhard Botha" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brandOrange">
+          <input type="text" name="name" required placeholder="e.g. Gerhard Botha" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brandOrange">
         </div>
 
         <div>
           <label class="block text-sm font-semibold text-slate-700 mb-1">Phone Number</label>
-          <input type="tel" required placeholder="e.g. 082 123 4567" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brandOrange">
+          <input type="tel" name="phone" required placeholder="e.g. 082 123 4567" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brandOrange">
         </div>
 
         <div>
           <label class="block text-sm font-semibold text-slate-700 mb-1">Service Required</label>
-          <select id="serviceSelect" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brandOrange">
+          <select id="serviceSelect" name="service" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brandOrange">
             <option value="General Inquiry">Select a service...</option>
             <option value="Burst Pipe Repair">Burst Pipe Repair</option>
             <option value="Thermal Leak Detection">Leak Detection</option>
@@ -221,7 +221,7 @@
 
         <div>
           <label class="block text-sm font-semibold text-slate-700 mb-1">Optional Message</label>
-          <textarea rows="3" placeholder="Briefly describe the emergency..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brandOrange"></textarea>
+          <textarea name="message" rows="3" placeholder="Briefly describe the emergency..." class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brandOrange"></textarea>
         </div>
 
         <button type="submit" class="w-full bg-brandOrange hover:bg-brandOrange-hover text-white font-bold py-4 rounded-xl text-lg shadow-lg transition-all">
@@ -309,11 +309,26 @@
 
     function handleFormSubmit(e) {
       e.preventDefault();
+      var form = e.target;
+      var button = form.querySelector("button[type='submit']");
       if (!FORM_ENDPOINT) {
         alert("PREVIEW MODE: Thank you! Lead recorded successfully on page. (Paste custom JSON endpoint into FORM_ENDPOINT to enable real-time delivery).");
-      } else {
-        alert("Form submitted to active endpoint!");
+        return;
       }
+      button.disabled = true;
+      fetch(FORM_ENDPOINT, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" }
+      }).then(function (response) {
+        if (!response.ok) throw new Error("request failed");
+        form.reset();
+        alert("Thank you. We will call you back shortly.");
+      }).catch(function () {
+        alert("We could not send that yet. Please call us instead.");
+      }).finally(function () {
+        button.disabled = false;
+      });
     }
   </script>
 </body>
